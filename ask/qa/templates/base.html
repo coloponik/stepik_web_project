@@ -10,21 +10,19 @@
 </head>
 <body>
     {% block container %}
-    <main role="main" class="container">
-      <div class="starter-template">
         <div class="container-fluid">
-          <div class="row"></div>
           <div class="row align-items-center justify-content-center">
-            <div class="col">LeftBar</div>
-            <div class="col">
+            <div class="col"></div>
+          </div>
+          <div class="row align-items-center justify-content-center">
+            <div class="col"></div>
+            <div class="col mx-auto">
               {% block content %}
               {% endblock %}
             </div>
-            <div class="col">RightBar</div>
+            <div class="col"></div>
           </div>
         </div>
-      </div>
-    </main>
     {% endblock %}
     {% block sidebar %}{% endblock %}
 </body>

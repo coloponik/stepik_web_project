@@ -7,6 +7,6 @@ urlpatterns = [
     path('signup/', views.test, name='signup'),
     path('question/<int:id>/', views.test, name='question'),
     path('ask/', views.test, name='ask'),
-    path('popular/', views.test, name='popular'),
+    path('popular/', views.pop, name='popular'),
     path('new/', views.test, name='new'),
 ]
