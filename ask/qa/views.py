@@ -1,7 +1,7 @@
 from django.http import HttpResponse
-from qa.models import Question
+from qa.models import Question, Answer
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 def test(request, *args, **kwargs):
     return HttpResponse("OK")
@@ -13,6 +13,14 @@ def home(request):
 def pop(request):
     page_obj = paginator(request)
     return render(request, 'pop.html', {'page_obj': page_obj})
+
+def question(request, id=1):
+    question = get_object_or_404(Question, id=id)
+    try:
+        answers = list(Answer.objects.filter(question_id=id))
+    except Answer.DoesNotExist:
+        answers = None
+    return render(request, 'question.html', {'que': question, 'answers': answers})
 
 def paginator(request):
     if request.path[1:-1] == 'popular':

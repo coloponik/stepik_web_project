@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="mt-4">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="mb-1">{{ que.title }}</h4>
+        <small>{{ que.added_at }}</small>
+      </div>
+      <p class="mb-1">{{ que.text }}</p>
+    </a>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row mt-5 align-items-center justify-content-center">
+      <div class="col">
+        {% for ans in answers %}
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+          <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-1">{{ ans.author }}</h6>
+            <small>{{ ans.added_at }}</small>
+          </div>
+          <p class="mb-1">{{ ans.text }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
