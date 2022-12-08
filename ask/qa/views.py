@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from qa.models import Question, Answer
+from qa.forms import AskForm, AnswerForm
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 
 def test(request, *args, **kwargs):
     return HttpResponse("OK")
@@ -20,7 +21,22 @@ def question(request, id=1):
         answers = list(Answer.objects.filter(question_id=id))
     except Answer.DoesNotExist:
         answers = None
-    return render(request, 'question.html', {'que': question, 'answers': answers})
+    answ_form = AnswerForm(request.POST)
+    if request.method == 'POST' and answ_form.is_valid():
+        answ_form.save()
+        return redirect('question', id=id)
+    else:
+        form = AnswerForm()
+        return render(request, 'question.html', {'que': question, 'answers': answers, 'form': answ_form})
+
+def ask(request):
+    ask_form = AskForm(request.POST)
+    if request.method == "POST" and ask_form.is_valid():
+        just_created = ask_form.save()
+        return redirect('question', id=just_created.id)
+    else:
+        form = AskForm()
+        return render(request, 'ask.html', {'form': form})
 
 def paginator(request):
     if request.path[1:-1] == 'popular':

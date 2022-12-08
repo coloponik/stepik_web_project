@@ -2,7 +2,7 @@
 {% block content %}
 <div class="list-group mt-3">
   {% for p in page_obj %}
-  <a href="question/{{ p.number }}" class="list-group-item list-group-item-action flex-column align-items-start active">
+  <a href="question/{{ p.id }}" class="list-group-item list-group-item-action flex-column align-items-start active">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{ p.title }}</h5>
       <small>{{ p.added_at }}</small>

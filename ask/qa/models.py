@@ -11,13 +11,13 @@ class Question(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
     added_at = models.DateTimeField()
-    rating = models.IntegerField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User, related_name='user_like_que')
+    rating = models.IntegerField(null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    likes = models.ManyToManyField(User, related_name='user_like_que', null=True)
     objects = QuestionManager()
 
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField()
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
