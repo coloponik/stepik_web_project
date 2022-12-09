@@ -17,7 +17,7 @@
         {% for ans in answers %}
           <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
           <div class="d-flex w-100 justify-content-between">
-            <h6 class="mb-1">{{ ans.author }}</h6>
+            <h6 class="mb-1">{% if ans.author is not None %}{{ ans.author }}{% else %} AnonymousUser {% endif %}</h6>
             <small>{{ ans.added_at }}</small>
           </div>
           <p class="mb-1">{{ ans.text }}</p>
